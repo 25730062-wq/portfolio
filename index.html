@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- GitHub Pages entry file. CSS and JS are separated into styles.css and script.js. -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>앨리스 : 거꾸로 흐르는 모래시계</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+
+    <!-- 타이틀 진입 커튼 - 페이지 로드 시 한 번만 -->
+    <div id="title-curtain">
+        <div class="title-curtain-half left"><div class="title-curtain-fabric"></div></div>
+        <div class="title-curtain-half right"><div class="title-curtain-fabric"></div></div>
+    </div>
+
+    <div id="title-screen">
+        <h1 class="title-logo">ALICE</h1>
+        <p class="title-sub">IN THE REVERSE HOURGLASS</p>
+        <div style="width: 150px; height: 2px; background: var(--gold); margin: 30px 0;"></div>
+        <button class="title-start-btn" onclick="startGame()">Enter the Rabbit Hole</button>
+    </div>
+
+    <div id="game-container">
+        <div id="side-title-left" class="side-title"><span class="side-title-text">이상한 나라의 앨리스</span></div>
+        <div id="side-title-right" class="side-title"><span class="side-title-text">거꾸로 흐르는 모래시계</span></div>
+        <div id="hud">
+            <div class="stat-group"><div class="gauge-label"><span>생명력</span><span id="vit-value" class="gauge-value">100 / 100</span></div><div class="gauge-container"><div id="vit-fill" class="gauge-fill"></div></div></div>
+            <div class="stat-group"><div class="gauge-label"><span>정신력</span><span id="san-value" class="gauge-value">100 / 100</span></div><div class="gauge-container"><div id="san-fill" class="gauge-fill"></div></div></div>
+            <div class="stat-group"><div class="gauge-label"><span>스트레스</span><span id="str-value" class="gauge-value">0 / 100</span></div><div class="gauge-container"><div id="str-fill" class="gauge-fill"></div></div></div>
+        </div>
+
+        <div id="main-content">
+            <div id="stage" class="curtain-closed">
+                <div id="scene-bg-overlay"></div>
+                <div id="visual-area">
+                    <div id="visual-symbol" aria-hidden="true"></div>
+                    <img id="scene-character-sprite" alt="" aria-hidden="true">
+                    <!-- 무대 조명 효과 - 이미지 박스 안에서만 작동 -->
+                    <div id="fx-overlay"></div>
+                    <div id="danger-vignette"></div>
+                </div>
+                <div id="dialog-panel" onclick="handleNext()" ondblclick="skipTyping()">
+                    <div id="name-tag" class="tag-nar">나레이션</div>
+                    <div id="text-content"></div>
+                    <div id="continue-indicator">▼</div>
+                    <div id="ending-return-btn" onclick="returnToTitle(event)">막을 내리고 돌아가기</div>
+                </div>
+                <div id="cinematic-overlay" aria-hidden="true">
+                    <video id="cinematic-video" playsinline preload="auto"></video>
+                    <div id="cinematic-skip">CLICK TO SKIP</div>
+                </div>
+                <!-- 커튼: stage 전체(visual-area + dialog-panel) 덮음 -->
+                <div class="stage-curtain stage-curtain-left"><div class="stage-curtain-fabric"></div></div>
+                <div class="stage-curtain stage-curtain-right"><div class="stage-curtain-fabric"></div></div>
+                <!-- 아이템 토스트: 커튼보다 위 -->
+                <div id="item-toast-area"></div>
+            </div>
+        </div>
+
+        <div id="inventory">
+            <div class="inv-label">ITEMS</div>
+            <div class="inv-slot" id="slot-1"></div>
+            <div class="inv-slot" id="slot-2"></div>
+            <div class="inv-slot" id="slot-3"></div>
+            <div class="inv-slot" id="slot-4"></div>
+            <div class="inv-slot" id="slot-5"></div>
+            <div id="inv-tooltip"></div>
+        </div>
+
+        <div id="choice-backdrop"></div>
+        <div id="choice-area"></div>
+    </div>
+
+    <script src="media_videos.js"></script>
+<script src="sfx_assets.js"></script>
+<script src="bgm_assets.js"></script>
+<script src="image_assets.js"></script>
+<script src="script.js"></script>
+
+    
+
+</body>
+</html>
